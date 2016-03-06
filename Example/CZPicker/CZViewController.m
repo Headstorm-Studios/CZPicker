@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.fruits = @[@"Apple", @"Banana", @"Grape", @"Watermelon", @"Lychee"];
+    self.fruits = @[@"All", @"Apple", @"Banana", @"Grape", @"Watermelon", @"Lychee"];
     self.fruitImages = @[[UIImage imageNamed:@"Apple"], [UIImage imageNamed:@"Banana"], [UIImage imageNamed:@"Grape"], [UIImage imageNamed:@"Watermelon"], [UIImage imageNamed:@"Lychee"]];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -65,7 +65,17 @@
 }
 
 -(void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows{
-    for(NSNumber *n in rows){
+    NSArray *sortedRows = [rows sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        if ([obj1 integerValue] > [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if ([obj1 integerValue] < [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+
+    for(NSNumber *n in sortedRows){
         NSInteger row = [n integerValue];
         NSLog(@"%@ is chosen!", self.fruits[row]);
     }
@@ -104,6 +114,7 @@
     picker.delegate = self;
     picker.dataSource = self;
     picker.allowMultipleSelection = YES;
+    picker.selectAll = YES;
     [picker show];
 }
 @end
