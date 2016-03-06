@@ -89,6 +89,9 @@
  property is YES, then footerView will be shown */
 @property BOOL allowMultipleSelection;
 
+/** whether there is a row that when selected causes all rows to be selected, default NO */
+@property BOOL selectAll;
+
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
 

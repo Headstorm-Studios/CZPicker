@@ -257,6 +257,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (IBAction)confirmButtonPressed:(id)sender{
     [self dismissPicker:^{
         if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemsAtRows:)]){
+            NSLog(@"selectedRows = %@", [self selectedRows]);
             [self.delegate czpickerView:self didConfirmWithItemsAtRows:[self selectedRows]];
         }
         
@@ -329,18 +330,62 @@ typedef void (^CZDismissCompletionCallback)(void);
     if(!self.selectedIndexPaths){
         self.selectedIndexPaths = [NSMutableArray new];
     }
-    // the row has already been selected
-    
+
     if (self.allowMultipleSelection){
-        
-        if([self.selectedIndexPaths containsObject:indexPath]){
-            [self.selectedIndexPaths removeObject:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+
+
+        // If there is a row whose function is to select all rows
+        if (self.selectAll) {
+            NSInteger numberOfRows = [self.dataSource numberOfRowsInPickerView:self];
+
+            // If the selectAll row (currently it will be row 0) is selected
+            if (indexPath.row == 0) {
+                if ([self.selectedIndexPaths containsObject:indexPath]) {
+                    for (NSInteger i = 0; i < numberOfRows; i++) {
+                        NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection: 0];
+                        UITableViewCell *newCell = [tableView cellForRowAtIndexPath:ip];
+                        [self.selectedIndexPaths removeObject:ip];
+                        newCell.accessoryType = UITableViewCellAccessoryNone;
+                    }
+                } else {
+                    for (NSInteger i = 0; i < numberOfRows; i++) {
+                        NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection: 0];
+                        UITableViewCell *newCell = [tableView cellForRowAtIndexPath:ip];
+                        if ([self.selectedIndexPaths containsObject:ip])
+                            [self.selectedIndexPaths removeObject:ip];
+                        [self.selectedIndexPaths addObject:ip];
+                        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    }
+                }
+            } else {
+                if([self.selectedIndexPaths containsObject:indexPath]){
+                    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection: 0];
+                    if ([self.selectedIndexPaths containsObject:ip]) {
+                        [self.selectedIndexPaths removeObject:ip];
+                        [tableView cellForRowAtIndexPath:ip].accessoryType = UITableViewCellAccessoryNone;
+                    }
+                    [self.selectedIndexPaths removeObject:indexPath];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+
+                } else {
+                    [self.selectedIndexPaths addObject:indexPath];
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
+
         } else {
-            [self.selectedIndexPaths addObject:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            // This was the only code before the if/else was added in this if (self.allowMultipleSelection)
+            if([self.selectedIndexPaths containsObject:indexPath]){
+                [self.selectedIndexPaths removeObject:indexPath];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            } else {
+                [self.selectedIndexPaths addObject:indexPath];
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
         }
-        
+
+
+
     } else { //single selection mode
         
         if (self.selectedIndexPaths.count > 0){// has selection

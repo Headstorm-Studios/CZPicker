@@ -20,6 +20,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		849DF0841C75508A0021FB5F /* HSExtendNSLogFunctionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 849DF0831C75508A0021FB5F /* HSExtendNSLogFunctionality.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9757554B3CE3415237FF9CF4 /* libPods-CZPicker_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D6E4554479664108A72E627 /* libPods-CZPicker_Example.a */; };
 		98D67F6F68BE60FEE95E833E /* libPods-CZPicker_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB42F7DB1EA50D8A4F8CDDF3 /* libPods-CZPicker_Tests.a */; };
@@ -60,6 +61,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6D7386ED2C9D9B3807C5A499 /* Pods-CZPicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CZPicker_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CZPicker_Example/Pods-CZPicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7D6AE252D0B69FBE445C3389 /* Pods-CZPicker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CZPicker_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CZPicker_Tests/Pods-CZPicker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		849DF0821C75508A0021FB5F /* HSExtendNSLogFunctionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSExtendNSLogFunctionality.h; sourceTree = "<group>"; };
+		849DF0831C75508A0021FB5F /* HSExtendNSLogFunctionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSExtendNSLogFunctionality.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C95947681CD21F871F3452D /* Pods-CZPicker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CZPicker_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CZPicker_Tests/Pods-CZPicker_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A6FD24591EE7C1E379A3CCBC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				849DF0821C75508A0021FB5F /* HSExtendNSLogFunctionality.h */,
+				849DF0831C75508A0021FB5F /* HSExtendNSLogFunctionality.m */,
 				6003F595195388D20070C39A /* CZPicker-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -362,6 +367,7 @@
 			files = (
 				6003F59E195388D20070C39A /* CZAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* CZViewController.m in Sources */,
+				849DF0841C75508A0021FB5F /* HSExtendNSLogFunctionality.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
